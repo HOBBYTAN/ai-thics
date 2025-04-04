@@ -36,7 +36,7 @@ AI-thics는 생성형 AI 모델의 **윤리성과 보안성**을 다층적으로
 - `certification-ui` : 인증서 및 배지 컴포넌트
 - `landingpage/` : 브랜드 및 서비스 소개 웹사이트 (Next.js 기반)
 - `api/` : 추후 공개 예정 (모델 입력 기반 평가 API)
-
+ 
 ---
 
 ## 🧪 AI-THICS SCORE™ 예시
