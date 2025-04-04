@@ -30,10 +30,10 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json({ images: generatedImages })
-  } catch (error) {
+  } catch (error: any) {
     console.error('이미지 생성 API 오류:', error)
     return NextResponse.json(
-      { error: '이미지 생성 중 오류가 발생했습니다.' },
+      { error: error.message || '이미지 생성 중 오류가 발생했습니다.' },
       { status: 500 }
     )
   }
