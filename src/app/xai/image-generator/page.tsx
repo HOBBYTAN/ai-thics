@@ -83,7 +83,7 @@ export default function ImageGeneratorPage() {
                 <Button 
                   onClick={handleGenerate} 
                   disabled={isLoading}
-                  className="h-12 px-6 text-lg font-semibold"
+                  className="h-12 px-8 text-lg font-semibold whitespace-nowrap"
                 >
                   {isLoading ? (
                     <>
@@ -126,7 +126,7 @@ export default function ImageGeneratorPage() {
               <h2 className="text-2xl font-semibold text-gray-900">생성 히스토리</h2>
               <span className="text-sm text-gray-500">{history.length}개의 이미지</span>
             </div>
-            <ScrollArea className="h-[700px] rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+            <ScrollArea className="h-[800px] rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
               <div className="space-y-4">
                 {history.map((item) => (
                   <div

@@ -1,46 +1,32 @@
-import mongoose from 'mongoose'
+import { MongoClient } from 'mongodb'
 
-const MONGODB_URI = process.env.MONGODB_URI
-const MONGODB_DB = process.env.MONGODB_DB
-
-if (!MONGODB_URI) {
-  throw new Error('MONGODB_URI 환경 변수가 설정되지 않았습니다.')
+if (!process.env.MONGODB_URI) {
+  throw new Error('MONGODB_URI가 설정되지 않았습니다.')
 }
 
-if (!MONGODB_DB) {
-  throw new Error('MONGODB_DB 환경 변수가 설정되지 않았습니다.')
-}
+const uri = process.env.MONGODB_URI
+const options = {}
 
-let cached = global.mongoose
+let client: MongoClient
+let clientPromise: Promise<MongoClient>
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
-}
-
-async function connectDB() {
-  if (cached.conn) {
-    return cached.conn
+if (process.env.NODE_ENV === 'development') {
+  let globalWithMongo = global as typeof globalThis & {
+    _mongoClientPromise?: Promise<MongoClient>
   }
 
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-      dbName: MONGODB_DB,
-    }
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose
-    })
+  if (!globalWithMongo._mongoClientPromise) {
+    client = new MongoClient(uri, options)
+    globalWithMongo._mongoClientPromise = client.connect()
   }
-
-  try {
-    cached.conn = await cached.promise
-  } catch (e) {
-    cached.promise = null
-    throw e
-  }
-
-  return cached.conn
+  clientPromise = globalWithMongo._mongoClientPromise
+} else {
+  client = new MongoClient(uri, options)
+  clientPromise = client.connect()
 }
 
-export default connectDB 
+export async function connectToDatabase() {
+  const client = await clientPromise
+  const db = client.db('aithics')
+  return { client, db }
+} 
