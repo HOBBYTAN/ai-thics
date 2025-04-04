@@ -5,7 +5,7 @@ import { Buffer } from 'buffer'
 interface ImageGenerationOptions {
   prompt: string
   n?: number
-  responseFormat?: 'url' | 'b64_json'
+  size?: string
 }
 
 interface ImageGenerationResponse {
@@ -40,7 +40,8 @@ export class XAIImageGenerator {
           model: 'grok-2-image',
           prompt: options.prompt,
           n: options.n || 1,
-          response_format: options.responseFormat || 'url'
+          size: options.size || '1024x1024',
+          response_format: 'url'
         })
       })
 
