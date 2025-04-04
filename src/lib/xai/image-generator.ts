@@ -1,23 +1,11 @@
-import fs from 'fs'
-import path from 'path'
-import { Buffer } from 'buffer'
 import { XAIError } from '../exceptions'
 
-interface ImageGenerationOptions {
-  prompt: string
-  n?: number
-}
-
-interface ImageGenerationResponse {
-  created: number
-  data: Array<{
-    url?: string
-    b64_json?: string
-  }>
-}
-
-interface GeneratedImage {
+interface XAIImageData {
   url: string
+}
+
+interface XAIAPIResponse {
+  data: XAIImageData[]
 }
 
 export class ImageGenerator {
@@ -62,9 +50,9 @@ export class ImageGenerator {
         throw new XAIError(error.error || error.message || '이미지 생성 중 오류가 발생했습니다.')
       }
 
-      const data = await response.json()
+      const data = await response.json() as XAIAPIResponse
       console.log('XAI API 응답:', data)
-      return data.data.map((item: any) => item.url)
+      return data.data.map((item: XAIImageData) => item.url)
     } catch (error) {
       if (error instanceof XAIError) {
         throw error
