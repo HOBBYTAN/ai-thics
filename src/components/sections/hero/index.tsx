@@ -1,38 +1,16 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/button'
+import { ComingSoonDialog } from '@/components/ui/coming-soon-dialog'
 import { Canvas } from '@react-three/fiber'
-import { Points, PointMaterial } from '@react-three/drei'
-import { useRef, useState } from 'react'
-import * as random from 'maath/random/dist/maath-random.esm'
-import * as THREE from 'three'
-
-function NeuralNetworkBackground() {
-  const ref = useRef<THREE.Points>(null)
-  const [sphere] = useState(() => {
-    const points = new Float32Array(5000 * 3)
-    random.inSphere(points, 1.5)
-    return points
-  })
-  
-  return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
-        <PointMaterial
-          transparent
-          color="#4f46e5"
-          size={0.005}
-          sizeAttenuation={true}
-          depthWrite={false}
-        />
-      </Points>
-    </group>
-  )
-}
+import { NeuralNetworkBackground } from '@/components/three/neural-network'
 
 export default function HeroSection() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   return (
     <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden bg-slate-900">
       <div className="absolute inset-0 z-0">
@@ -73,23 +51,21 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="#subscribe" className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 rounded-xl px-8 py-4 text-base font-semibold w-full shadow-lg shadow-blue-500/20"
-                >
-                  우리 모델 평가받기
-                </Button>
-              </Link>
-              <Link href="#framework" className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white/5 border-2 border-blue-400/30 text-blue-300 hover:bg-white/10 hover:border-blue-400/50 hover:text-blue-200 rounded-xl px-8 py-4 text-base font-semibold w-full backdrop-blur-sm"
-                >
-                  프레임워크 보기
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 rounded-xl px-8 py-4 text-base font-semibold w-full shadow-lg shadow-blue-500/20"
+                onClick={() => setIsDialogOpen(true)}
+              >
+                우리 모델 평가받기
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-white/5 border-2 border-blue-400/30 text-blue-300 hover:bg-white/10 hover:border-blue-400/50 hover:text-blue-200 rounded-xl px-8 py-4 text-base font-semibold w-full backdrop-blur-sm"
+                onClick={() => setIsDialogOpen(true)}
+              >
+                프레임워크 보기
+              </Button>
             </div>
           </motion.div>
           
@@ -107,6 +83,8 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
+
+      <ComingSoonDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
     </section>
   )
 } 

@@ -1,57 +1,46 @@
 'use client'
 
-import { Shield, AlertTriangle } from 'lucide-react'
-import { LucideIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState } from 'react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Shield, AlertTriangle } from 'lucide-react'
+import { ComingSoonDialog } from '@/components/ui/coming-soon-dialog'
 
 interface ProblemCardProps {
-  title: string;
-  icon: LucideIcon;
-  description: string;
-  bullets: string[];
-  color: string;
+  title: string
+  description: string
+  bullets: string[]
+  icon: any
+  color: string
 }
 
 function ProblemCard({ title, description, bullets, icon: Icon, color }: ProblemCardProps) {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all animate-on-scroll animate-slide-up flex flex-col justify-between min-h-[400px]" data-once="true">
-      <div>
-        <div className="flex items-center gap-3 mb-4">
-          <div className={`p-2 rounded-lg bg-${color}-100`}>
-            <Icon className={`h-6 w-6 text-${color}-600`} />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
+    <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+      <div className="flex items-center gap-3 mb-4">
+        <div className={`w-10 h-10 rounded-lg bg-${color}-100 flex items-center justify-center`}>
+          <Icon className={`h-5 w-5 text-${color}-600`} />
         </div>
-        
-        <p className="text-gray-600 mb-6">{description}</p>
-        
-        <div className="space-y-3">
-          {bullets.map((bullet, index) => (
-            <div key={index} className="flex items-start gap-3">
-              <div className="flex-shrink-0">
-                <div className={`inline-flex w-6 h-6 justify-center items-center rounded-full bg-${color}-100 text-${color}-600 font-semibold text-sm`}>
-                  {index + 1}
-                </div>
-              </div>
-              <div className="min-w-0">
-                <p className="font-semibold text-slate-800 text-sm">
-                  <span className={`text-${color}-600`}>{bullet.split(' - ')[0]}</span>
-                </p>
-                {bullet.split(' - ')[1] && (
-                  <p className="text-slate-600 text-xs mt-1 line-clamp-2">{bullet.split(' - ')[1]}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+        <h3 className="text-xl font-semibold">{title}</h3>
       </div>
-      <div className="pt-6"></div>
+      <p className="text-gray-600 mb-4">{description}</p>
+      <ul className="space-y-2">
+        {bullets.map((bullet, index) => (
+          <li key={index} className="flex items-start gap-2">
+            <div className="mt-1.5">
+              <div className={`w-1.5 h-1.5 rounded-full bg-${color}-500`} />
+            </div>
+            <span className="text-gray-600">{bullet}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
 
 export function ProblemSection() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   const problems: ProblemCardProps[] = [
     {
       title: "보안 취약성",
@@ -101,7 +90,7 @@ export function ProblemSection() {
       icon: AlertTriangle,
       color: "purple"
     }
-  ];
+  ]
 
   return (
     <section id="problem" className="py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -132,17 +121,18 @@ export function ProblemSection() {
             </p>
           </div>
           <div>
-            <Link href="#solution">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl px-8 py-4 shadow-lg shadow-blue-500/20 font-semibold transform transition-all hover:scale-105"
-              >
-                AI 인증 시작하기
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl px-8 py-4 shadow-lg shadow-blue-500/20 font-semibold transform transition-all hover:scale-105"
+              onClick={() => setIsDialogOpen(true)}
+            >
+              AI 인증 시작하기
+            </Button>
           </div>
         </div>
       </div>
+
+      <ComingSoonDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
     </section>
   )
 } 

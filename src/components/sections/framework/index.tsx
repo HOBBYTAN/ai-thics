@@ -1,8 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { ComingSoonDialog } from '@/components/ui/coming-soon-dialog'
 
 export function FrameworkSection() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   return (
     <section id="framework" className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -29,6 +33,7 @@ export function FrameworkSection() {
             <Button
               variant="outline"
               className="w-full hover:bg-blue-50 transition-colors"
+              onClick={() => setIsDialogOpen(true)}
             >
               자세히 보기
             </Button>
@@ -46,6 +51,7 @@ export function FrameworkSection() {
             <Button
               variant="outline"
               className="w-full hover:bg-purple-50 transition-colors"
+              onClick={() => setIsDialogOpen(true)}
             >
               자세히 보기
             </Button>
@@ -63,21 +69,25 @@ export function FrameworkSection() {
             <Button
               variant="outline"
               className="w-full hover:bg-indigo-50 transition-colors"
+              onClick={() => setIsDialogOpen(true)}
             >
               자세히 보기
             </Button>
           </div>
         </div>
 
-        <div className="mt-12 text-center animate-on-scroll animate-fade-in animate-delay-400" data-once="true">
+        <div className="text-center mt-12">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transform transition-all hover:scale-105"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl px-8 py-4 shadow-lg shadow-blue-500/20 font-semibold transform transition-all hover:scale-105"
+            onClick={() => setIsDialogOpen(true)}
           >
             프레임워크 문서 다운로드
           </Button>
         </div>
       </div>
+
+      <ComingSoonDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
     </section>
   )
 } 

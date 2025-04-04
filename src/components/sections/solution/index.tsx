@@ -1,9 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Shield, LineChart, Brain } from 'lucide-react'
+import { ComingSoonDialog } from '@/components/ui/coming-soon-dialog'
 
 export function SolutionSection() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   return (
     <section id="solution" className="py-16 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4 max-w-5xl">
@@ -77,14 +81,13 @@ export function SolutionSection() {
             </div>
 
             <div className="animate-on-scroll animate-fade-in animate-delay-400" data-once="true">
-              <a href="#framework">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transform transition-all hover:scale-105"
-                >
-                  우리 모델 점수 매기기 시작하기
-                </Button>
-              </a>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transform transition-all hover:scale-105"
+                onClick={() => setIsDialogOpen(true)}
+              >
+                내 서비스 점검하기
+              </Button>
             </div>
           </div>
 
@@ -107,6 +110,8 @@ export function SolutionSection() {
           </div>
         </div>
       </div>
+
+      <ComingSoonDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
     </section>
   )
 } 
