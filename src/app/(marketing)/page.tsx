@@ -1,4 +1,4 @@
-import HeroSection from "@/components/sections/hero"
+import { HeroSection } from "@/components/sections/hero"
 import { ProblemSection } from "@/components/sections/problem"
 import { SolutionSection } from "@/components/sections/solution"
 import { FrameworkSection } from "@/components/sections/framework"

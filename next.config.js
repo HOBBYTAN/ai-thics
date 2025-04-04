@@ -12,6 +12,10 @@ const nextConfig = {
     config.externals = [...config.externals, { canvas: 'canvas' }];  // three.js 관련 설정
     return config;
   },
+  // 클라이언트 컴포넌트 설정 추가
+  experimental: {
+    serverActions: true,
+  },
 }
 
 module.exports = nextConfig
