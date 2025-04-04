@@ -87,10 +87,8 @@ AI-thics는 그 흐름 속에서,
 
 ---
 
-## 📦 프로젝트 구조 ``` 
-aithics-landingpage/ ├── app/ # Next.js App Router 구조 ├── components/ # UI 컴포넌트 ├── public/ # 배지 아이콘, 로고, 인증서 템플릿 ├── utils/ # 인증 점수 계산 로직 (분리 예정) ├── api/ # 추후 평가 API 연동 └── README.md # 🧠 당신이 지금 보고 있는 이것 
-```
-
+## 📦 프로젝트 구조 
+``` aithics-landingpage/ ├── app/ # Next.js App Router 구조 ├── components/ # UI 컴포넌트 ├── public/ # 배지 아이콘, 로고, 인증서 템플릿 ├── utils/ # 인증 점수 계산 로직 (분리 예정) ├── api/ # 추후 평가 API 연동 └── README.md # 🧠 당신이 지금 보고 있는 이것 ```
 
 ---
 
