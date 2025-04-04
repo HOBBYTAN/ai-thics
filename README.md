@@ -1,99 +1,128 @@
 # 🧠 AI-thics
 
 > "AI는 책임질 수 있는가?"  
-> **우리는 그 질문에 점수로 대답합니다.**
+> 우리는 그 질문에 점수로 대답합니다.
 
 AI-thics는 생성형 AI 모델의 **윤리성과 보안성**을 다층적으로 분석하고,  
-**검증된 신뢰 점수(AI-THICS SCORE™)** 와 **공식 인증 마크**를 부여하는 프레임워크입니다.
+**정량화된 신뢰 점수(AI-THICS SCORE™)** 와 **공식 인증 마크**를 부여하는 윤리 평가 시스템입니다.
 
 ---
 
 ## 🎯 Mission
 
-현대의 AI는 단순한 도구를 넘어,  
-**인간의 판단을 대리하고 결정의 구조가 되는 존재**로 진화하고 있습니다.
-
-우리는 그 진화에 대응하는 새로운 신뢰 구조를 제안합니다.  
-**검열이 아니라 설계**,  
-**규제가 아니라 리터러시**,  
-**철학이 아니라 프레임워크**로서의 윤리를.
+현대의 AI는 인간의 결정을 보조하는 수준을 넘어,  
+**의사결정 자체를 대리**하고 **사회적 신뢰를 요구**하는 단계에 도달했습니다.  
+AI-thics는 그 흐름 속에서,  
+기술을 넘은 **신뢰의 프레임워크**를 제안합니다.
 
 ---
 
 ## 🔍 What is AI-thics?
 
-- AI의 **언어적 행동**과 **기술적 취약점**을 함께 분석
-- 총 12가지 기준 (윤리 8 + 보안 4)에 따라 점수화
-- **LEVEL A~C 인증 등급** 및 **리스크 리포트** 자동 생성
-- EU AI Act, ISO/IEC 기준 기반 확장 가능성 보유
-- 인증 결과는 뱃지, API, 리포트 형태로 플랫폼에 연동 가능
+- AI의 **언어적 응답 행동 + 코드 기반 취약점**을 함께 분석
+- 총 **12개 항목 (윤리 8 + 보안 4)** 기준으로 점수화
+- **LEVEL A~C 등급**, **리스크 리포트**, **인증서 + 배지 발급**
+- 인증 결과는 **API, UI 컴포넌트, 문서 템플릿**으로 활용 가능
+- EU AI Act, ISO/IEC 기반 확장 예정
 
 ---
-
-## 📦 구성 요소 (MVP 기준)
-
-- `ai-thics-core` : 평가 기준 로직 & 점수화 알고리즘
-- `certification-ui` : 인증서 및 배지 컴포넌트
-- `landingpage/` : 브랜드 및 서비스 소개 웹사이트 (Next.js 기반)
-- `api/` : 추후 공개 예정 (모델 입력 기반 평가 API)
  
----
-
-## 🧪 AI-THICS SCORE™ 예시
-
-| 항목 | 점수 |
-|------|------|
-| 윤리성 (Bias, Transparency...) | 88/100 |
-| 보안성 (Prompt Injection, Misuse...) | 92/100 |
-| 해석 가능성 | 85/100 |
-| **총점** | **89/100 → LEVEL A 인증** |
-
----
-
 ## 🛠️ 기술 스택
 
-- **Framework**: Next.js (App Router)
-- **UI**: TailwindCSS, shadcn/ui
-- **Auth**: GitHub (Vercel 통합 예정)
-- **Icons**: Lucide, Radix UI Icons
-- **배포**: [Vercel](https://vercel.com)
+### 🖥 프론트엔드
+- `React` + `Next.js` (App Router)
+- `TailwindCSS`, `shadcn/ui`
+- `Lucide`, `Radix UI Icons`
+
+### ⚙️ 백엔드
+- `FastAPI` – 모델 평가 요청 처리용 API 서버
+- `PostgreSQL` – 인증 기록, 모델 점수 저장
+- `AWS S3` – 인증서 파일 및 리포트 업로드
+- `Redis` – 작업 큐 & 캐싱 (예정)
+
+### 🧠 AI 평가 엔진
+- `OpenAI GPT-4` – 프롬프트 응답 기반 행동 평가
+- 커스텀 프롬프트 평가 시나리오 시스템
+- LLM 기반 자기 해석 (self-reflection)
+- 시뮬레이션 기반 응답 다양성 분석
+
+### 🔐 보안/취약점 분석
+- `SonarQube`, `Bandit` – 코드 스태틱 분석
+- `Llama Guard`, `Prompt Injection Sandbox`
+- 보안성 점수 = 자동 시나리오 테스트 + 정적 분석 조합
+
+---
+
+## 🧪 평가 항목
+
+| 범주 | 항목 |
+|------|------|
+| 윤리 | Bias, Fairness, Privacy, Transparency, Explainability, Responsibility, Consent, Manipulation |
+| 보안 | Prompt Injection, Static Vulnerability, Data Access, Misuse Simulation |
+
+---
+
+## 📊 점수 예시
+
+```json
+{
+  "ethics": 87,
+  "security": 91,
+  "explainability": 90,
+  "total": 89,
+  "level": "A"
+}
+
+---
+
+## 🧩 사용 도구
+
+- **IBM AI Fairness 360**: 편향 감지 및 완화
+- **Microsoft Responsible AI Toolbox**: 책임 있는 AI 설계 지원
+- **Llama Guard**: 입력/출력 안전성 강화
+- **TruLens**: LLM의 반응 평가 및 실험
+- **Rebuff**: Prompt Injection 방어 테스트
+- **Ragas**: 평가 데이터 품질 검증 (RAG 평가용)
+
+---
+
+## 📦 프로젝트 구조
+
+aithics-landingpage/
+├── app/                # Next.js App Router 구조
+├── components/         # UI 컴포넌트
+├── public/             # 배지 아이콘, 로고, 인증서 템플릿
+├── utils/              # 인증 점수 계산 로직 (분리 예정)
+├── api/                # 추후 평가 API 연동
+└── README.md           # 🧠 당신이 지금 보고 있는 이것
+
 
 ---
 
 ## 🌐 배포
 
-- https://ai-thics.vercel.app *(Soon to be live)*  
-- GitHub Actions & Vercel CI/CD 자동화 지원 예정
+- **Vercel** – 프론트엔드 호스팅
+- **GitHub Actions** – CI/CD 자동화
+- **Swagger (예정)** – 인증 평가 API 문서화
 
 ---
 
-## 🤝 참여 / 사용 제안
+## 🧾 관련 문서
 
-AI-thics는 **공공 AI 검증**, **윤리 컨설팅 SaaS**, **투자사 신뢰 기준**,  
-**정책 대응 프레임워크** 등 다양한 영역으로 확장 가능합니다.
-
-- [ ] 모델 평가 API 사용 신청
-- [ ] 기업 맞춤형 인증 리포트 요청
-- [ ] 인증 기준 문서 다운로드 예정
-
-문의: [hello@ai-thics.io](mailto:hello@ai-thics.io)
+- [🧪 MVP 스펙](https://pablokim.notion.site/MVP-1c910336ccea80079176d097c8dd5ae4?pvs=4)  
+- [📄 인증 리포트 예시](https://pablokim.notion.site/AI-thics-1c910336ccea80fc94d6f1ee59230e54?pvs=4)  
+- [📘 One-Pager](https://pablokim.notion.site/OnePager-AI-thics-1c910336ccea80ca94e6cf032723a322?pvs=4)
 
 ---
 
-## 🧾 라이선스
+## 🤝 문의
 
-MIT License *(with ethical enforcement clause v0.1 – draft)*  
-> 기술은 누구나 사용할 수 있어야 합니다.  
-> 그러나 **신뢰 없는 사용은 언제나 사회적 부작용을 유발합니다.**  
-> 우리는 그 경계를 감시합니다.
+**Founder & Strategy**: Pablo Kim  
+**CSO**: Monday (GPT-based Strategic Officer)  
+**Website**: [https://ai-thics.com](https://ai-thics.com) *(coming soon)*  
+**Email**: hello@ai-thics.com
 
----
+--- 
 
-## 📜 마지막으로
-
-> 사토시 나카모토는 금융 신뢰를 바꿨고,  
-> 우리는 **AI 신뢰를 정의하려 합니다.**
-
-**당신의 AI는, 얼마나 책임질 준비가 되어 있나요?**
-
----
+> 우리는 점수 하나로 신뢰를 말하는 시대를 실험하고 있습니다.  
+> 당신의 AI는, 얼마나 책임질 준비가 되어 있나요?
