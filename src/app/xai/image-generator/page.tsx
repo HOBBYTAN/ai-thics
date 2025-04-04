@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ImageDialog } from '@/components/ui/image-dialog'
@@ -105,10 +106,11 @@ export default function ImageGeneratorPage() {
                     className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl border border-gray-200 shadow-sm transition-all hover:shadow-md"
                     onClick={() => setSelectedImage(image)}
                   >
-                    <img
+                    <Image
                       src={image.url}
                       alt={image.prompt}
-                      className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
                       <p className="absolute bottom-4 left-4 right-4 text-sm text-white line-clamp-2">
@@ -135,10 +137,11 @@ export default function ImageGeneratorPage() {
                     onClick={() => setSelectedImage(item)}
                   >
                     <div className="relative aspect-square overflow-hidden rounded-lg">
-                      <img
+                      <Image
                         src={item.url}
                         alt={item.prompt}
-                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                        fill
+                        className="object-cover transition-transform group-hover:scale-105"
                       />
                     </div>
                     <div className="space-y-1">

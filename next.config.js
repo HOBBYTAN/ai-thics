@@ -14,7 +14,9 @@ const nextConfig = {
   },
   // 클라이언트 컴포넌트 설정 추가
   experimental: {
-    serverActions: true,
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'ai-thics.vercel.app'],
+    },
   },
 }
 

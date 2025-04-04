@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Download } from 'lucide-react'
@@ -37,10 +38,12 @@ export function ImageDialog({ open, onOpenChange, imageUrl, prompt }: ImageDialo
         </DialogHeader>
         <div className="relative bg-gray-50">
           <div className="aspect-square w-full overflow-hidden">
-            <img
+            <Image
               src={imageUrl}
               alt={prompt}
-              className="h-full w-full object-contain"
+              fill
+              className="object-contain"
+              priority
             />
           </div>
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
