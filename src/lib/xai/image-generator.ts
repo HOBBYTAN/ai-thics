@@ -30,6 +30,14 @@ export class XAIImageGenerator {
 
   async generateImage(options: ImageGenerationOptions): Promise<GeneratedImage[]> {
     try {
+      console.log('XAI API 요청 시작:', {
+        url: this.baseUrl,
+        options: {
+          ...options,
+          apiKey: this.apiKey ? '설정됨' : '설정되지 않음'
+        }
+      })
+
       const response = await fetch(this.baseUrl, {
         method: 'POST',
         headers: {
@@ -45,18 +53,25 @@ export class XAIImageGenerator {
         })
       })
 
+      console.log('XAI API 응답 상태:', response.status)
+
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(`API 요청 실패: ${error.error?.message || '알 수 없는 오류'}`)
+        const errorData = await response.json()
+        console.error('XAI API 오류 응답:', errorData)
+        throw new Error(`API 요청 실패 (${response.status}): ${JSON.stringify(errorData)}`)
       }
 
       const result: ImageGenerationResponse = await response.json()
+      console.log('XAI API 성공 응답:', result)
       
       return result.data.map(item => ({
         url: item.url || ''
       }))
     } catch (error) {
       console.error('이미지 생성 중 오류 발생:', error)
+      if (error instanceof Error) {
+        throw new Error(`이미지 생성 실패: ${error.message}`)
+      }
       throw error
     }
   }
