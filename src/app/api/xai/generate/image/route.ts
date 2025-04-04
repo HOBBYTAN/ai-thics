@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     console.log('요청 바디:', body)
     
-    const { prompt, n = 3, size = '1024x1024' } = body
+    const { prompt, n = 3 } = body
 
     if (!prompt) {
       console.error('프롬프트가 제공되지 않음')
@@ -31,12 +31,11 @@ export async function POST(req: NextRequest) {
     }
 
     const generator = new XAIImageGenerator(XAI_API_KEY)
-    console.log('이미지 생성 시작:', { prompt, n, size })
+    console.log('이미지 생성 시작:', { prompt, n })
     
     const generatedImages = await generator.generateImage({
       prompt,
-      n,
-      size
+      n
     })
 
     console.log('이미지 생성 완료:', generatedImages)
@@ -51,7 +50,7 @@ export async function POST(req: NextRequest) {
         const savedImage = await GeneratedImage.create({
           prompt,
           url: image.url,
-          size
+          size: 'default' // 기본값으로 설정
         })
         return savedImage
       })
