@@ -59,7 +59,7 @@ export class ImageGenerator {
             error: errorData
           })
           errorMessage = errorData.error || errorData.message || '이미지 생성 중 오류가 발생했습니다.'
-        } catch (jsonError) {
+        } catch (parseError) {
           const errorText = await response.text()
           console.error('XAI API 에러 응답 (TEXT):', {
             status: response.status,
@@ -82,8 +82,8 @@ export class ImageGenerator {
         }
         
         return data.data.map((item: XAIImageData) => item.url)
-      } catch (error) {
-        console.error('XAI API 응답 파싱 오류:', error)
+      } catch (parseError) {
+        console.error('XAI API 응답 파싱 오류:', parseError)
         throw new XAIError('API 응답을 처리할 수 없습니다.')
       }
     } catch (error) {
