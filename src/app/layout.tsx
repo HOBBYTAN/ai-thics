@@ -50,6 +50,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <meta property="og:image" content="https://aithics.net/images/og-image/og-image.png" />
+        <meta name="twitter:image" content="https://aithics.net/images/og-image/og-image.png" />
+      </head>
       <body className={inter.className}>
         <AnimationProvider>
           <Header />
