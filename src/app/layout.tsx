@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Convert ethical AI into measurable trust. AI-thics helps you assess and certify generative AI models with clarity.",
     images: [
       {
-        url: "https://ai-thics.com/api/og",
+        url: "https://ai-thics.com/images/og-image/og-image.png",
         width: 1200,
         height: 630,
         alt: "AI-thics - Responsible AI Certification",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI-thics | The First Benchmark for Ethical AI",
     description: "Convert ethical AI into measurable trust. AI-thics helps you assess and certify generative AI models with clarity.",
-    images: ["https://ai-thics.com/api/og"],
+    images: ["https://ai-thics.com/images/og-image/og-image.png"],
   },
   alternates: {
     languages: {
@@ -53,8 +53,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
-        <meta property="og:image" content="https://ai-thics.com/api/og" />
-        <meta name="twitter:image" content="https://ai-thics.com/api/og" />
+        <meta property="og:image" content="https://ai-thics.com/images/og-image/og-image.png" />
+        <meta name="twitter:image" content="https://ai-thics.com/images/og-image/og-image.png" />
       </head>
       <body className={inter.className}>
         <AnimationProvider>
