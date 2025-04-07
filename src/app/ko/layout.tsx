@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Convert ethical AI into measurable trust. AI-thics helps you assess and certify generative AI models with clarity.",
     images: [
       {
-        url: "/images/og-image/og-image.png",
+        url: "https://ai-thics.com/api/og",
         width: 1200,
         height: 630,
         alt: "AI-thics - 신뢰할 수 있는 AI 인증 플랫폼",
@@ -53,8 +53,8 @@ export default function KoreanLayout({
       <head>
         <link rel="icon" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
-        <meta property="og:image" content="https://aithics.net/images/og-image/og-image.png" />
-        <meta name="twitter:image" content="https://aithics.net/images/og-image/og-image.png" />
+        <meta property="og:image" content="https://ai-thics.com/api/og" />
+        <meta name="twitter:image" content="https://ai-thics.com/api/og" />
       </head>
       <body className={inter.className}>
         <AnimationProvider>
