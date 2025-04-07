@@ -5,6 +5,13 @@ export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
   try {
+    // URL 쿼리 파라미터 파싱
+    const { searchParams } = new URL(request.url);
+    const title = searchParams.get('title') || 'The First Benchmark for Ethical AI';
+    const description = searchParams.get('description') || 
+      'Convert ethical AI into measurable trust. AI-thics helps you assess and certify generative AI models with clarity.';
+    const locale = searchParams.get('locale') || 'en';
+
     // Font 가져오기
     const interRegular = await fetch(
       new URL('../../../assets/Inter-Regular.ttf', import.meta.url)
@@ -68,7 +75,7 @@ export async function GET(request: NextRequest) {
               marginBottom: '10px',
             }}
           >
-            The First Benchmark for Ethical AI
+            {title}
           </h2>
           <p
             style={{
@@ -78,8 +85,19 @@ export async function GET(request: NextRequest) {
               maxWidth: '800px',
             }}
           >
-            Convert ethical AI into measurable trust. AI-thics helps you assess and certify generative AI models with clarity.
+            {description}
           </p>
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '20px',
+              right: '20px',
+              fontSize: '14px',
+              color: '#6b7280',
+            }}
+          >
+            {locale === 'ko' ? '생성 시간' : 'Generated at'}: {new Date().toISOString()}
+          </div>
         </div>
       ),
       {

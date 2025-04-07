@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI-thics | The First Benchmark for Ethical AI",
     description: "Convert ethical AI into measurable trust. AI-thics helps you assess and certify generative AI models with clarity.",
-    images: ["/images/og-image/og-image.png"],
+    images: ["https://ai-thics.com/api/og?locale=ko"],
   },
   alternates: {
     languages: {
