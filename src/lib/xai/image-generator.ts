@@ -82,8 +82,8 @@ export class ImageGenerator {
         }
         
         return data.data.map((item: XAIImageData) => item.url)
-      } catch (jsonError) {
-        console.error('XAI API 응답 파싱 오류:', jsonError)
+      } catch (error) {
+        console.error('XAI API 응답 파싱 오류:', error)
         throw new XAIError('API 응답을 처리할 수 없습니다.')
       }
     } catch (error) {
