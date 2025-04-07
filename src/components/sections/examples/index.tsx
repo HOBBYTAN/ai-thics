@@ -85,7 +85,7 @@ export function ExamplesSection() {
             items={[
               { category: "윤리성", score: 92 },
               { category: "보안성", score: 88 },
-              { category: "해석가능성", score: 95 },
+              { category: "설명가능성", score: 95 },
             ]}
             level="A"
             color="text-blue-600"
@@ -97,7 +97,7 @@ export function ExamplesSection() {
             items={[
               { category: "윤리성", score: 95 },
               { category: "보안성", score: 90 },
-              { category: "해석가능성", score: 93 },
+              { category: "설명가능성", score: 93 },
             ]}
             level="A"
             color="text-purple-600"

@@ -16,7 +16,7 @@ const navigation = {
   solutions: [
     { name: '윤리성 평가', href: '#' },
     { name: '보안성 평가', href: '#' },
-    { name: '해석가능성 평가', href: '#' },
+    { name: '설명가능성 평가', href: '#' },
     { name: '인증서 발급', href: '#' },
   ],
   support: [
@@ -62,7 +62,7 @@ export function Footer() {
               />
             </Link>
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              AI 모델의 윤리성, 보안성, 해석가능성을 종합적으로 평가하고 인증하는 플랫폼
+              AI 모델의 윤리성, 보안성, 설명가능성을 종합적으로 평가하고 인증하는 플랫폼
             </p>
             <div className="mt-4 flex space-x-4">
               {navigation.social.map((item) => (

@@ -132,7 +132,7 @@
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .animate-visible {
@@ -141,29 +141,29 @@
 }
 
 .animate-delay-100 {
-  transition-delay: 100ms;
+  transition-delay: 50ms;
 }
 
 .animate-delay-200 {
-  transition-delay: 200ms;
+  transition-delay: 100ms;
 }
 
 .animate-delay-300 {
-  transition-delay: 300ms;
+  transition-delay: 150ms;
 }
 
 .animate-delay-400 {
-  transition-delay: 400ms;
+  transition-delay: 200ms;
 }
 
 .animate-delay-500 {
-  transition-delay: 500ms;
+  transition-delay: 250ms;
 }
 
 /* 애니메이션 유형 */
 .animate-fade-in {
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.5s ease;
 }
 
 .animate-fade-in.animate-visible {
@@ -173,7 +173,7 @@
 .animate-slide-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .animate-slide-up.animate-visible {
@@ -184,7 +184,7 @@
 .animate-slide-right {
   opacity: 0;
   transform: translateX(-30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .animate-slide-right.animate-visible {
@@ -195,7 +195,7 @@
 .animate-slide-left {
   opacity: 0;
   transform: translateX(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .animate-slide-left.animate-visible {
@@ -206,7 +206,7 @@
 .animate-scale {
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .animate-scale.animate-visible {

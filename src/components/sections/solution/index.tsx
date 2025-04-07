@@ -16,7 +16,7 @@ export function SolutionSection() {
             AI 윤리 인증을 위한 종합 솔루션
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            AI-thics는 AI 모델의 윤리성, 보안성, 해석가능성을 종합적으로 평가하고
+            AI-thics는 AI 모델의 윤리성, 보안성, 설명가능성을 종합적으로 평가하고
             인증하는 플랫폼입니다.
           </p>
         </div>
@@ -68,7 +68,7 @@ export function SolutionSection() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">해석가능성 평가</h3>
+                <h3 className="text-xl font-semibold mb-2">설명가능성 평가</h3>
                 <p className="text-gray-600">
                   AI의 응답이 얼마나 명확한 근거를 갖는지 확인합니다.
                 </p>

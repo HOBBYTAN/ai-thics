@@ -131,9 +131,9 @@ export function ResultsSection() {
                   </div>
                   
                   <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600">해석가능성</span>
-                      <span className="text-blue-600 font-medium">{model.explainability}</span>
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-gray-600">설명가능성</span>
+                      <span className="text-sm font-medium">{model.explainability}%</span>
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div 
