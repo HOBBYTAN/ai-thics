@@ -10,6 +10,7 @@ export function CTASection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
+  const [responseData, setResponseData] = useState<any>(null)
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -17,6 +18,7 @@ export function CTASection() {
     if (status !== 'idle') {
       setStatus('idle')
       setMessage('')
+      setResponseData(null)
     }
   }
 
@@ -43,6 +45,7 @@ export function CTASection() {
       })
       
       const data = await response.json()
+      setResponseData(data)
       
       if (!response.ok) {
         // 서버에서 반환한 오류 메시지 사용
@@ -57,7 +60,8 @@ export function CTASection() {
       }
       
       setStatus('success')
-      setMessage(`구독이 완료되었습니다! ${email}와 pablo@hobbytan.com으로 이메일이 발송되었습니다.`)
+      setMessage(`구독이 완료되었습니다! 이메일 주소(${email})가 데이터베이스에 저장되었습니다.`)
+      console.log(`구독 성공 - 저장된 데이터 ID: ${data.id}`)
       setEmail('')
     } catch (error) {
       console.error('Subscription error:', error)
@@ -117,10 +121,15 @@ export function CTASection() {
               </div>
               
               {status === 'success' && (
-                <p className="mt-3 text-sm text-green-600 flex items-center justify-center gap-1">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                  {message}
-                </p>
+                <div className="mt-3 text-green-600">
+                  <p className="flex items-center justify-center gap-1 font-medium">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    {message}
+                  </p>
+                  {responseData?.id && (
+                    <p className="text-xs mt-1 text-green-500">ID: {responseData.id}</p>
+                  )}
+                </div>
               )}
               
               {status === 'error' && (
