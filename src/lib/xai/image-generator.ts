@@ -16,11 +16,14 @@ export class ImageGenerator {
     this.apiKey = apiKey
   }
 
-  async generateImage(prompt: string): Promise<string[]> {
+  async generateImage(prompt: string, count: number = 2, width: number = 1024, height: number = 1024): Promise<string[]> {
     try {
       console.log('XAI API 요청:', {
         url: this.baseUrl,
         prompt,
+        count,
+        width,
+        height,
         apiKey: this.apiKey ? '설정됨' : '설정되지 않음'
       })
 
@@ -33,10 +36,10 @@ export class ImageGenerator {
         body: JSON.stringify({
           model: 'grok-2-image',
           prompt,
-          n: 2,
+          n: count,
           response_format: 'url',
-          width: 1024,
-          height: 1024,
+          width: width,
+          height: height,
         }),
       })
 

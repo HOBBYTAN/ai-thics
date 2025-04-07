@@ -13,18 +13,39 @@ interface ImageDialogProps {
 }
 
 export function ImageDialog({ open, onOpenChange, imageUrl, prompt }: ImageDialogProps) {
-  const handleDownload = async () => {
+  const handleDownload = async (e: React.MouseEvent) => {
+    // 이벤트 전파 방지
+    e.preventDefault()
+    e.stopPropagation()
+    
     try {
-      const response = await fetch(imageUrl)
-      const blob = await response.blob()
-      const url = window.URL.createObjectURL(blob)
+      // 이미지 URL이 CORS 정책으로 인해 직접 다운로드가 안될 수 있어 새 탭에서 열기 방식 추가
       const a = document.createElement('a')
-      a.href = url
+      a.href = imageUrl
       a.download = `ai-thics-${Date.now()}.png`
+      a.target = '_blank' // 새 탭에서 열기
+      a.rel = 'noopener noreferrer'
       document.body.appendChild(a)
       a.click()
-      window.URL.revokeObjectURL(url)
       document.body.removeChild(a)
+      
+      // 직접 다운로드 시도 (CORS 정책이 허용하는 경우)
+      try {
+        const response = await fetch(imageUrl)
+        if (response.ok) {
+          const blob = await response.blob()
+          const url = window.URL.createObjectURL(blob)
+          const link = document.createElement('a')
+          link.href = url
+          link.download = `ai-thics-${Date.now()}.png`
+          document.body.appendChild(link)
+          link.click()
+          window.URL.revokeObjectURL(url)
+          document.body.removeChild(link)
+        }
+      } catch (fetchError) {
+        console.log('직접 다운로드 실패, 링크로 대체됨:', fetchError)
+      }
     } catch (error) {
       console.error('이미지 다운로드 중 오류 발생:', error)
     }

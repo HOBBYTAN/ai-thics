@@ -23,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
     globalWithMongo._mongoClientPromise = client.connect()
       .then(client => {
         console.log('MongoDB: 개발 환경 연결 성공')
+        setupIndexes(client)
         return client
       })
       .catch(err => {
@@ -37,12 +38,33 @@ if (process.env.NODE_ENV === 'development') {
   clientPromise = client.connect()
     .then(client => {
       console.log('MongoDB: 프로덕션 환경 연결 성공')
+      setupIndexes(client)
       return client
     })
     .catch(err => {
       console.error('MongoDB: 프로덕션 환경 연결 실패', err)
       throw err
     })
+}
+
+// 데이터베이스 인덱스 설정
+async function setupIndexes(client: MongoClient) {
+  try {
+    const db = client.db('aithics')
+    
+    // 만료일 기반 TTL 인덱스 생성
+    await db.collection('images').createIndex(
+      { expiresAt: 1 },
+      { expireAfterSeconds: 0 } // 문서의 expiresAt 필드에 지정된 시간이 지나면 삭제
+    )
+    
+    // 생성일 기반 정렬을 위한 인덱스
+    await db.collection('images').createIndex({ createdAt: -1 })
+    
+    console.log('MongoDB: 인덱스 설정 완료')
+  } catch (error) {
+    console.error('MongoDB: 인덱스 설정 중 오류 발생', error)
+  }
 }
 
 export async function connectToDatabase() {
