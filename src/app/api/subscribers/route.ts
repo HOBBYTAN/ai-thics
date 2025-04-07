@@ -21,13 +21,11 @@ declare global {
 }
 
 let client: MongoClient
-let clientPromise: Promise<MongoClient>
-
-if (!global._mongoClientPromise) {
+const clientPromise: Promise<MongoClient> = (global._mongoClientPromise || (() => {
   client = new MongoClient(MONGODB_URI)
   global._mongoClientPromise = client.connect()
-}
-clientPromise = global._mongoClientPromise
+  return global._mongoClientPromise
+})())
 
 // MongoDB 연결 함수
 async function connectToDatabase() {

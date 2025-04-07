@@ -5,12 +5,19 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { PaperPlaneIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons'
 
+// 응답 데이터 타입 정의
+interface SubscriptionResponseData {
+  message: string;
+  success: boolean;
+  id?: string;
+}
+
 export function CTASection() {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
-  const [responseData, setResponseData] = useState<any>(null)
+  const [responseData, setResponseData] = useState<SubscriptionResponseData | null>(null)
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)

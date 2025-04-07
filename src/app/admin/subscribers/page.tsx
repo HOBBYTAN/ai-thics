@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 
 interface Subscriber {
@@ -50,11 +50,8 @@ export default function SubscribersPage() {
   const [deleteConfirmation, setDeleteConfirmation] = useState<boolean>(false)
   const [deleteMessage, setDeleteMessage] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetchSubscribers(pagination.page, pagination.limit)
-  }, [pagination.page, pagination.limit])
-
-  const fetchSubscribers = async (page: number, limit: number) => {
+  // fetchSubscribers 함수를 useCallback으로 감싸서 의존성 문제 해결
+  const fetchSubscribers = useCallback(async (page: number, limit: number) => {
     try {
       setLoading(true)
       setError(null)
@@ -95,7 +92,11 @@ export default function SubscribersPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [searchTerm, selectedStatus, selectedSource, startDate, endDate, filters.sources.length])
+
+  useEffect(() => {
+    fetchSubscribers(pagination.page, pagination.limit)
+  }, [pagination.page, pagination.limit, fetchSubscribers])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
