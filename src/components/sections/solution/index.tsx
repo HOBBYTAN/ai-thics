@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Shield, LineChart, Brain } from 'lucide-react'
 import { ComingSoonDialog } from '@/components/ui/coming-soon-dialog'
+import Image from 'next/image'
 
 export function SolutionSection() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -95,9 +96,11 @@ export function SolutionSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-sm" />
             <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <img 
+              <Image 
                 src="/images/dashboard.png" 
                 alt="AI-thics 대시보드"
+                width={600}
+                height={400}
                 className="w-full h-full object-cover rounded-lg shadow-xl"
               />
             </div>

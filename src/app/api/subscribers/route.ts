@@ -17,7 +17,8 @@ interface SubscriberFilter {
 
 // MongoDB 클라이언트 프로미스 전역 타입 선언
 declare global {
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
+  // eslint-disable-next-line no-var
+  const _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
 let client: MongoClient
