@@ -3,10 +3,9 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { ImageDialog } from '@/components/ui/image-dialog'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Loader2, Download, Share2, History, ChevronDown, X } from 'lucide-react'
+import { Loader2, Download, Share2, History, X } from 'lucide-react'
 
 interface GeneratedImage {
   _id: string
@@ -43,7 +42,18 @@ const ASPECT_RATIOS = [
 ]
 
 // 이미지 로드 오류 처리를 위한 컴포넌트
-const ImageWithFallback = ({ src, alt, ...props }: any) => {
+interface ImageWithFallbackProps {
+  src: string
+  alt: string
+  fill?: boolean
+  width?: number
+  height?: number
+  className?: string
+  priority?: boolean
+  onError?: () => void
+}
+
+const ImageWithFallback = ({ src, alt, ...props }: ImageWithFallbackProps) => {
   const [imgSrc, setImgSrc] = useState(src)
   const [loadError, setLoadError] = useState(false)
 
@@ -244,7 +254,13 @@ export default function ImageGeneratorPage() {
                 >
                   <div className="aspect-square w-full">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
-                    <img src={style.image} alt={style.name} className="w-full h-full object-cover" />
+                    <Image 
+                      src={style.image} 
+                      alt={style.name} 
+                      width={100} 
+                      height={100}
+                      className="w-full h-full object-cover" 
+                    />
                     <span className="absolute bottom-1 left-1 right-1 text-xs text-white z-20 line-clamp-1">{style.name}</span>
                   </div>
                 </div>
