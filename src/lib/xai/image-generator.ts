@@ -59,7 +59,7 @@ export class ImageGenerator {
             error: errorData
           })
           errorMessage = errorData.error || errorData.message || '이미지 생성 중 오류가 발생했습니다.'
-        } catch (parseError) {
+        } catch (_parseError) {
           const errorText = await response.text()
           console.error('XAI API 에러 응답 (TEXT):', {
             status: response.status,
