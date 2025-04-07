@@ -2,17 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import { motion } from 'framer-motion'
 import EthicsPanel from '@/components/framework/EthicsPanel'
 import SecurityPanel from '@/components/framework/SecurityPanel'
 import ExplainabilityPanel from '@/components/framework/ExplainabilityPanel'
 import { useSearchParams } from 'next/navigation'
-
-// 카드 항목 타입 정의
-interface CardItem {
-  title: string;
-  points: string[];
-}
 
 export default function FrameworkPage() {
   const searchParams = useSearchParams()
