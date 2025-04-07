@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import AnimationProvider from "@/components/animation-provider";
@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AI-thics | Responsible AI Certification & Trust Scoring Platform",
-  description: "AI-thics evaluates and certifies generative AI systems for ethics, security, and explainability. Build trustworthy AI services with measurable scores and transparent assessments.",
+  description: "AI-thics는 생성형 AI의 윤리성, 보안성, 해석 가능성을 점수화하고 검증합니다. 신뢰할 수 있는 AI 서비스를 위한 기준을 제공합니다.",
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
@@ -23,10 +23,10 @@ export const metadata: Metadata = {
         url: "/images/og-image/og-image.png",
         width: 1200,
         height: 630,
-        alt: "AI-thics - Responsible AI Certification",
+        alt: "AI-thics - 신뢰할 수 있는 AI 인증 플랫폼",
       }
     ],
-    locale: "en_US",
+    locale: "ko_KR",
     type: "website",
   },
   twitter: {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default function KoreanLayout({
   children,
 }: {
   children: React.ReactNode
@@ -61,4 +61,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+} 
